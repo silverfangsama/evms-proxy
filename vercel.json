@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "name": "evmsproxy",
+    "builds": [
+        {
+            "src": "./proxy.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/proxy.js"
+        }
+    ]
+}
