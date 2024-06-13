@@ -8,7 +8,7 @@ const app = express()
 
 // Enable CORS for your frontend origin
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://www.resolverconsult-panel.com/',
     methods: ['GET', 'POST']
 }));
 app.use(express.json())
