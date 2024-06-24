@@ -8,14 +8,14 @@ const app = express()
 
 // Enable CORS for your frontend origin
 app.use(cors({
-    origin: 'https://www.resolverconsult-panel.com',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST']
 }));
 app.use(express.json())
 
 // Middleware to enable CORS
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://www.resolverconsult-panel.com');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') {
