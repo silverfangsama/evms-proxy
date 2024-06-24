@@ -92,6 +92,37 @@ app.get('/proxy/platon', async (req, res) => {
      }
 })
 
+app.get('/proxy/base', async (req, res) => {
+    const { account } = req.query;
+     //GLOBAL VARIABLES
+     const particleprojectid = 'aabbcf0e-e728-42bb-b6ed-f50be0154e20';
+     const particleprojectserverkey = 's7UZZFHoE7koeD9Pw8lLDZyxMgCY36rngiGL3tLF';
+     const url = 'https://rpc.particle.network/evm-chain'
+     const options = {
+         chainId: 8453,
+         jsonrpc: '2.0',
+         id: 1,
+         method: 'particle_getTokens',
+         params: [account],
+     }
+     const auth = {
+         username: particleprojectid,
+         password: particleprojectserverkey,
+     }
+     try {
+         const response = await axios.post(url, options, {
+            auth: auth,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+         })
+         console.log(response.data)
+         res.json(response.data)
+     } catch (error) {
+         console.log('Could Not fetch Platon Tokens: ', error)
+     }
+})
+
 app.get('/proxy/avalanche', async(req, res) => {
     const { account } = req.query;
      //GLOBAL VARIABLES
