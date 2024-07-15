@@ -48,6 +48,21 @@ app.get('/proxy', async (req, res) => {
     }
 });
 
+app.get('/proxy/ether', async (req, res) => {
+    const { account } = req.query
+    const etherscanapikey = '7K13FA32ZEWIPVXRS2ICJG5XUKHZMQE3DX';
+    const url = `https://api.ethers/api?module=account&action=tokentx&address=${account}&startblock=0&endblock=99999999&sort=asc&apikey=${etherscanapikey}`;
+    try {
+        const response = await axios.get(url, {
+            headers: { 'Content-Type': 'application/json'}
+        })
+        res.json(response.data)
+    } catch (error) {
+        console.error('Failed to fetch data:', error);
+        res.status(500).json({ error: 'Failed to fetch data' });
+    }
+})
+
 app.get('/proxy/merlinscan', async (req, res) => {
     const merlinapikey = 'd52215ab-0017-4c01-a56b-b8bf4f08c921';
     const { account } = req.query;
